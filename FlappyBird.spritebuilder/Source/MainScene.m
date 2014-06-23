@@ -36,7 +36,7 @@
     for (CCNode *ground in _grounds) {
         // set collision txpe
         ground.physicsBody.collisionType = @"level";
-//        ground.zOrder = DrawingOrderGround;
+        ground.zOrder = DrawingOrderGround;
     }
     
     // set this class as delegate
