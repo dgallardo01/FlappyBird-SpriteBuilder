@@ -26,7 +26,6 @@
 @end
 
 @implementation MainScene {
-    
     CGPoint _cloudParallaxRatio;
     CGPoint _bushParallaxRatio;
     
