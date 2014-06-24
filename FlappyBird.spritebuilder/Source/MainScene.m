@@ -10,6 +10,14 @@
 #import "Obstacle.h"
 
 @implementation MainScene {
+    CCNode *_cloud1;
+    CCNode *_cloud2;
+    NSArray *_clouds;
+    
+    CCNode *_bush1;
+    CCNode *_bush2;
+    NSArray *_bushes;
+    
     CCNode *_ground1;
     CCNode *_ground2;
     NSArray *_grounds;
@@ -38,6 +46,9 @@
         ground.physicsBody.collisionType = @"level";
         ground.zOrder = DrawingOrderGround;
     }
+    
+    _clouds =@[_cloud1, _cloud2];
+    _bushes = @[_bush1, _bush2];
     
     // set this class as delegate
     physicsNode.collisionDelegate = self;
@@ -141,6 +152,16 @@
         // if the left corner is one complete width off the screen, move it to the right
         if (groundScreenPosition.x <= (-1 * ground.contentSize.width)) {
             ground.position = ccp(ground.position.x + 2 * ground.contentSize.width, ground.position.y);
+        }
+    }
+    
+    //move and loop the bushes
+    for (CCNode *bush in _bushes) {
+        //move the bush
+        bush.position = ccp(bush.position.x - (character.physicsBody.velocity.x * delta), bush.position.y);
+        //if the left corner is one complete  width off the screen, move it to the right
+        if (bush.position.x <=(-1 *bush.contentSize.width)) {
+            bush.position = ccp(bush.position.x + 2 * bush.contentSize.width, bush.position.y);
         }
     }
     
